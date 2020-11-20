@@ -1,5 +1,6 @@
 import React from 'react';
 import RedemptionList from './RedemptionList'
+import Chatbot from './TwitchChat'
 import './App.css';
 
 class App extends React.Component {
@@ -36,6 +37,7 @@ class App extends React.Component {
           add={(name, timer) => this.handleAddRedemption(name, timer)} 
           remove={(id) => this.handleRemoveRedemption(id)} 
         />
+        <Chatbot />
       </div>
     );
   }
