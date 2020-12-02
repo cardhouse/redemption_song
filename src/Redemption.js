@@ -69,14 +69,6 @@ export default class Redemption extends React.Component {
 		};
 	}
 
-	offerTimer() {
-		return (
-			(this.state.timeRemaining === null) ?
-			<button onClick={() => this.addTimer(1)}>Add Timer</button>
-			: null
-		);
-	}
-
 	componentWillUnmount() {
 		clearInterval(this.interval);
 	}
@@ -86,7 +78,6 @@ export default class Redemption extends React.Component {
 			<div className="bg-blue-700 rounded flex px-3 py-4 my-2 shadow-lg" onClick={() => this.handleClick()}>
 				<p className="w-2/3">{this.props.title}</p>
 				<p>{this.displayTimer()}</p>
-				{this.offerTimer()}
 			</div>
 		)
 	}
