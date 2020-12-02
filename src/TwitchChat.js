@@ -3,11 +3,8 @@ import React from 'react'
 export default class TwitchChat extends React.Component {
 	constructor(props) {
 		super(props);
-		this.tmi = require('tmi.js');
-	}
-
-	componentDidMount() {
-		const client = new this.tmi.Client({
+		const tmi = require('tmi.js');
+		this.client = new tmi.Client({
 			options: { debug: true, messagesLogLevel: "info" },
 			connection: {
 				reconnect: true,
@@ -19,14 +16,20 @@ export default class TwitchChat extends React.Component {
 			},
 			channels: [ 'cardhousemagic' ]
 		});
-		client.connect().catch(console.error);
-		client.on('message', (channel, tags, message, self) => {
-			if(self) return;
-			if(message.toLowerCase() === '!hello') {
-				client.say(channel, `@${tags.username}, heya!`);
-				console.log(tags);
-			}
-		});
+	}
+
+	answerMessage(channel, tags, message, self) {
+		if(self) return;
+		if(message.toLowerCase() === '!hello') {
+			this.client.say(channel, `@${tags.username}, heya!`);
+			this.props.addRedemption('Hello World', 1);
+			console.log(tags);
+		}
+	}
+
+	componentDidMount() {
+		this.client.connect().catch(console.error);
+		this.client.on('message', (channel, tags, message, self) => this.answerMessage(channel, tags, message, self));
 	}
 
 	render() {

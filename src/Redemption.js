@@ -19,9 +19,20 @@ export default class Redemption extends React.Component {
 	addTimer(minutes) {
 		const timeToSet = minutes * 60;
 		this.setState({
-			timeRemaining: timeToSet
+			timeRemaining: timeToSet,
+			timerRunning: false
 		});
-		this.interval = setInterval(() => this.countDown(), 1000);
+	}
+
+	handleClick() {
+		if (this.state.timerRunning || ! this.state.timeRemaining) {
+			this.props.handleRemove(this.props.id);
+		} else {
+			this.interval = setInterval(() => this.countDown(), 1000);
+			this.setState({
+				timerRunning: true
+			});
+		}
 	}
 
 	countDown() {
@@ -34,7 +45,7 @@ export default class Redemption extends React.Component {
 		const timeRemaining = this.getTimeRemaining();
 		if(timeRemaining.total === null) {
 			return null;
-		} else if (timeRemaining.total === 0) {
+		} else if (! timeRemaining.total) {
 			clearInterval(this.interval);
 			return "Done!";
 		}
@@ -61,7 +72,7 @@ export default class Redemption extends React.Component {
 	offerTimer() {
 		return (
 			(this.state.timeRemaining === null) ?
-			<button onClick={() => this.addTimer(1)}>Add TImer</button>
+			<button onClick={() => this.addTimer(1)}>Add Timer</button>
 			: null
 		);
 	}
@@ -71,10 +82,9 @@ export default class Redemption extends React.Component {
 	}
 
 	render() {
-		const id = this.props.id;
 		return (
-			<div onClick={this.props.handleRemove.bind(this, id)}>
-				<p>{this.props.title}</p>
+			<div className="bg-blue-700 rounded flex px-3 py-4 my-2 shadow-lg" onClick={() => this.handleClick()}>
+				<p className="w-2/3">{this.props.title}</p>
 				<p>{this.displayTimer()}</p>
 				{this.offerTimer()}
 			</div>

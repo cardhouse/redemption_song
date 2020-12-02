@@ -31,8 +31,7 @@ export default class RedemptionList extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<ol>{this.renderRedemptions()}</ol>
+			<div className="bg-white flex flex-col px-2 py-2">
 				<div>
 		          <label htmlFor="redemption_name">Name:</label>
 		          <input 
@@ -50,6 +49,7 @@ export default class RedemptionList extends React.Component {
 		            <br />
 		          <button onClick={() => this.handleAdd()}>Add redemption</button>
 		        </div>
+				<ol>{this.renderRedemptions()}</ol>
 			</div>
 		)
 	}

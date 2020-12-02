@@ -37,7 +37,7 @@ class App extends React.Component {
           add={(name, timer) => this.handleAddRedemption(name, timer)} 
           remove={(id) => this.handleRemoveRedemption(id)} 
         />
-        <Chatbot />
+        <Chatbot addRedemption={(name, timer) => this.handleAddRedemption(name, timer)} />
       </div>
     );
   }

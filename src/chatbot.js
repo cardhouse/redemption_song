@@ -9,7 +9,7 @@ const client = new tmi.Client({
 		username: 'Joker',
 		password: 'oauth:p6n6jzndbi690d8yvtofostxt7qdb3'
 	},
-	channels: [ 'cardhousemagic' ]
+	channels: [ 'cardhouse_' ]
 });
 client.connect().catch(console.error);
 client.on('message', (channel, tags, message, self) => {
