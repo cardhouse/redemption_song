@@ -13,5 +13,10 @@ export const redemptions = [
         "slug": "20-minute-sample",
         "title": "20 Minute Drill",
         "timer": 20
+    },
+    {
+        "slug": "short-test",
+        "title": "Short test",
+        "timer": .05
     }
 ];
