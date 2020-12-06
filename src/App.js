@@ -30,7 +30,6 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <h1>Redemptions</h1>
         <RedemptionList 
           redemptions={this.state.redemptions} 
           add={(name, timer) => this.handleAddRedemption(name, timer)} 

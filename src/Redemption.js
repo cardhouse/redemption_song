@@ -10,16 +10,14 @@ export default class Redemption extends React.Component {
 	}
 
 	componentDidMount() {
-		const timer = (this.props.timer === 0) ? 0 : this.props.timer;
-		if(timer > 0) {
-			this.addTimer(timer);
+		if(this.props.timer > 0) {
+			this.addTimer(this.props.timer);
 		}
 	}
 
 	addTimer(minutes) {
-		const timeToSet = minutes * 60;
 		this.setState({
-			timeRemaining: timeToSet,
+			timeRemaining: minutes * 60,
 			timerRunning: false
 		});
 	}

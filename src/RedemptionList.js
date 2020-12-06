@@ -1,24 +1,28 @@
 import React from 'react'
 import Redemption from './Redemption'
+import { redemptions } from './data/redemptions'
 
 export default class RedemptionList extends React.Component {
 	renderRedemption(redemption, index) {
 		return (
-			<Redemption 
-				title={redemption.title} 
-				id={index} 
-				handleRemove={(index) => this.props.remove(index)} 
+			<Redemption
+				title={redemption.title}
+				id={index}
+				handleRemove={(index) => this.props.remove(index)}
 				timer={redemption.timer}
 			/>
-		) 
+		)
 	}
 
 	handleAdd() {
 		const nameInput = document.getElementById('redemption_name');
-    	const timerInput = document.getElementById('redemption_timer');
-    	this.props.add(nameInput.value, timerInput.value);
-    	nameInput.value = '';
-    	timerInput.value = 0;
+		const selected = redemptions.find(e => e.slug === nameInput.value);
+
+		if (Object.keys(selected).length === 0) {
+			console.log("There is no redemption configured called " + nameInput.value);
+		} else {
+			this.props.add(selected.title, selected.timer);
+		}
 	}
 
 	renderRedemptions() {
@@ -29,26 +33,30 @@ export default class RedemptionList extends React.Component {
 		);
 	}
 
+	renderRedemptionSelection() {
+		return redemptions.map(redemption => {
+			return (
+				<option
+					key={redemption.slug}
+					value={redemption.slug}
+				>
+					{redemption.title}
+				</option>
+			);
+		});
+	}
+
 	render() {
 		return (
-			<div className="bg-white flex flex-col px-2 py-2">
+			<div className="bg-white flex flex-col px-2 py-29 w-64">
 				<div>
-		          <label htmlFor="redemption_name">Name:</label>
-		          <input 
-		            id="redemption_name"
-		            type="text" 
-		            defaultValue=""
-		            placeholder="Name of redemption" />
-		            <br />
-		          <label htmlFor="redemption_timer">Timer:</label>
-		          <input 
-		            id="redemption_timer"
-		            type="number" 
-		            defaultValue="0"
-		            placeholder="Number of minutes" />
-		            <br />
-		          <button onClick={() => this.handleAdd()}>Add redemption</button>
-		        </div>
+					<label htmlFor="redemption_name">Name:</label>
+					<select id="redemption_name">
+						{this.renderRedemptionSelection()}
+					</select>
+					<br />
+					<button onClick={() => this.handleAdd()}>Add redemption</button>
+				</div>
 				<ol>{this.renderRedemptions()}</ol>
 			</div>
 		)
