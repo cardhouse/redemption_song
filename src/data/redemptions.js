@@ -1,22 +1,26 @@
 export const redemptions = [
     {
-        "slug": "fumigate",
-        "title": "Fumigate",
-        "timer": 0
-    },
-    {
-        "slug": "magoo",
         "title": "Magoo",
         "timer": 5
     },
     {
-        "slug": "20-minute-sample",
         "title": "20 Minute Drill",
         "timer": 20
     },
     {
-        "slug": "short-test",
-        "title": "Short test",
-        "timer": .05
+        "title": "Drill",
+        "timer": 20
+    },
+    {
+        "title": "Hesitate",
+        "timer": 5
+    },
+    {
+        "title": "Sideways",
+        "timer": 5
+    },
+    {
+        "title": "Hydrate",
+        "timer": 1
     }
 ];

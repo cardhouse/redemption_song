@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  padding: 12px 24px;
+  letter-spacing: 0.05em;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+h1, h2, p {
+  padding: 0;
+  margin: 6px 0 0 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2 {
+  font-size: 1.5em;
+}
+
+ul, li {
+  padding-left: 0;
+  list-style-type: none;
+  margin-bottom: 8px;
+}
+
+.username {
+  font-weight: 700;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  font-size: 0.8em;
+  background-color: rgb(22, 0, 41);
+  padding: 18px;
+  border-radius: 6px;
+  width: 360px;
+  box-shadow: 1px 6px 12px -9px rgba(0, 0, 0, 0.3);
+}
+
+.alert {
+  background-color: green;
+}
+
+.card-icon {
+  margin-right: 8px;
+}
+.card-info {
+  padding: 0 8px;
+  width: 200px;
+}
+.card-time {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.8em;
+  font-weight: 700;
+  margin: 0 auto;
+  width: 80px;
+}
+.card-time p {
+  text-align: center;
+  margin: 12px auto;
+}
+.card-cost {
+  display: flex;
+  flex-direction: column-reverse;
+  font-size: 0.7em;
+  text-align: center;
+  margin: 0 auto;
+  width: 80px;
+}
+.card-cost img {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
 }
