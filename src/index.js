@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './assets/main.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Echo from 'laravel-echo';
 
 ReactDOM.render(
   <React.StrictMode>

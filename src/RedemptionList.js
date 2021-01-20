@@ -1,6 +1,5 @@
 import React from 'react'
 import Redemption from './Redemption'
-import { redemptions } from './data/redemptions'
 
 export default class RedemptionList extends React.Component {
 	renderRedemption(redemption, index) {
