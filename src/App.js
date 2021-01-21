@@ -49,7 +49,7 @@ class App extends React.Component {
     const id = this.findIndex(redemptions, 'id', e.redemption.event_id);
     console.log(id);
     // Remove the redemption with the id of {blah}
-    delete redemptions[id];
+    redemptions.splice(id, 1);
     this.setState({
       redemptions: redemptions
     });
@@ -78,7 +78,7 @@ class App extends React.Component {
   }
   
   componentWillUnmount() {
-    window.Echo.leaveChannel('redemptions-548965051');
+    window.Echo.leaveChannel('redemptions.548965051');
   }
 
   render() {
