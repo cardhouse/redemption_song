@@ -39,6 +39,10 @@ ul, li {
   background-color: green;
 }
 
+.redeemed {
+  background-color: crimson;
+}
+
 .card-icon {
   margin-right: 8px;
 }

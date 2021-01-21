@@ -7,7 +7,8 @@ export default class Redemption extends React.Component {
 		this.state = {
 			timeRemaining: null,
 			timerRunning: false,
-			alerting: ''
+			alerting: '',
+			redeemed: ''
 		}
 	}
 
@@ -26,7 +27,11 @@ export default class Redemption extends React.Component {
 
 	handleClick() {
 		if (this.state.timerRunning || ! this.state.timeRemaining) {
-			fetch('https://laravel.test/api/catch?id=' + this.props.id);
+			this.redeem();
+			window.Echo.private('redemptions.548965051').whisper('removed', {
+				event_id: this.props.id
+			});
+			this.props.handleRemove(this.props.id);
 		} else {
 			this.startTimer();
 		}
@@ -85,13 +90,17 @@ export default class Redemption extends React.Component {
 		};
 	}
 
+	redeem() {
+		this.setState({ redeemed: 'redeemed' });
+	}
+
 	componentWillUnmount() {
 		clearInterval(this.interval);
 	}
 
 	render() {
 		return (
-			<div className={"card cursor-pointer " + this.state.alerting} onClick={() => this.handleClick()}>
+			<div className={"card cursor-pointer " + this.state.alerting + ' ' + this.state.redeemed} onClick={() => this.handleClick()}>
 				<div className="card-icon">
 					<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/d8baaf0b-bde8-4211-8eb8-81695a0b18d2-profile_image-70x70.png" alt="" />
 				</div>

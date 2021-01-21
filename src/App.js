@@ -9,6 +9,7 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: '4ccf3005de75c66366d9',
+    authEndpoint: process.env.REACT_APP_NGROK_DOMAIN + '/api/broadcasting',
     cluster: 'us2',
     forceTLS: true
 });
@@ -36,19 +37,15 @@ class App extends React.Component {
         this.handleAddRedemption(e, selected.timer);
       }
     });
-    window.Echo.channel('redemptions.548965051').listen('RedemptionRemoved', (e) => {
-        this.handleRemoveRedemption(e);
+    
+    window.Echo.private('redemptions.548965051').listenForWhisper('removed', (e) => {
+      this.handleRemoveRedemption(e.event_id);
     });
   }
 
-  handleRemoveRedemption(e) {
-    console.log(e);
-
+  handleRemoveRedemption(eventId) {
     var redemptions = this.state.redemptions;
-    console.log(redemptions);
-    const id = this.findIndex(redemptions, 'id', e.redemption.event_id);
-    console.log(id);
-    // Remove the redemption with the id of {blah}
+    const id = this.findIndex(redemptions, 'id', eventId);
     redemptions.splice(id, 1);
     this.setState({
       redemptions: redemptions
@@ -65,7 +62,6 @@ class App extends React.Component {
   }
 
   handleAddRedemption(event, timer) {
-    console.log(event);
     this.setState({
       redemptions: this.state.redemptions.concat([{
         id: event.redemption.event_id,
