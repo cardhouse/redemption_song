@@ -52,6 +52,11 @@ export default class Redemption extends React.Component {
 		});
 	}
 
+	renderMessage()
+	{
+		return (this.props.message === 'undefined')
+	}
+
 	displayTimer(cost) {
 		const timeRemaining = this.getTimeRemaining();
 		if(timeRemaining.total === null) {
@@ -61,7 +66,6 @@ export default class Redemption extends React.Component {
 					<img src="https://static-cdn.jtvnw.net/channel-points-icons/548965051/2d4bf65f-fbc0-47f8-a8ca-079feef0b87b/icon-1.png" alt="" />
 				</div>
 			);
-			// return cost + " braincells";
 		} else if (timeRemaining.total <= 0) {
 			clearInterval(this.interval);
 			return "Done!";
@@ -81,13 +85,7 @@ export default class Redemption extends React.Component {
 		const hours = Math.floor( (total/(60*60)) % 24 );
 		const days = Math.floor( total/(60*60*24) );
 
-		return {
-			total,
-			days,
-			hours,
-			minutes,
-			seconds
-		};
+		return { total, days, hours, minutes, seconds };
 	}
 
 	redeem() {
@@ -102,19 +100,14 @@ export default class Redemption extends React.Component {
 		return (
 			<div className={"card cursor-pointer " + this.state.alerting + ' ' + this.state.redeemed} onClick={() => this.handleClick()}>
 				<div className="card-icon">
-					<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/d8baaf0b-bde8-4211-8eb8-81695a0b18d2-profile_image-70x70.png" alt="" />
+					<img className="w-12 h-12" src={this.props.image} alt="" />
 				</div>
 				<div className="card-info">
 					<span className="username">{this.props.redeemer}</span> redeemed
 					<h2>{this.props.title}</h2>
-
 				</div>
 				{this.displayTimer(this.props.cost)}
 			</div>
-			/* <div className="bg-gray-300 rounded flex px-3 py-2 my-2 shadow-lg cursor-pointer" onClick={() => this.handleClick()}>
-				<p className="w-2/3">{this.props.title}</p>
-				<p>{this.displayTimer()}</p>
-			</div> */
 		)
 	}
 }

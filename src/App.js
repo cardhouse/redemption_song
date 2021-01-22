@@ -62,13 +62,16 @@ class App extends React.Component {
   }
 
   handleAddRedemption(event, timer) {
+    console.log(event);
     this.setState({
       redemptions: this.state.redemptions.concat([{
         id: event.redemption.event_id,
         title: event.redemption.reward.title,
         redeemer: event.redemption.user_name,
         cost: event.redemption.reward.cost,
-        timer: (timer === "") ? 0 : timer
+        timer: (timer === "") ? 0 : timer,
+        message: event.user_input,
+        image: event.redemption.image
       }]),
     });
   }
