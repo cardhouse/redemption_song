@@ -3,6 +3,7 @@ import Redemption from './Redemption'
 
 export default class RedemptionList extends React.Component {
 	renderRedemption(redemption, index) {
+		console.log(redemption);
 		return (
 			<Redemption
 				title={redemption.title}
@@ -11,6 +12,8 @@ export default class RedemptionList extends React.Component {
 				id={redemption.id}
 				handleRemove={(id) => this.props.remove(id)}
 				timer={redemption.timer}
+				message={redemption.message}
+				image={redemption.image}
 			/>
 		)
 	}
