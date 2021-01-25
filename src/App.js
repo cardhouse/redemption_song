@@ -3,6 +3,7 @@ import React from 'react';
 import RedemptionList from './RedemptionList'
 import { redemptions } from './data/redemptions';
 import Echo from 'laravel-echo';
+import queryString from 'query-string'
 
 window.Pusher = require('pusher-js');
 
@@ -14,20 +15,22 @@ window.Echo = new Echo({
     forceTLS: true
 });
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       redemptions: [],
     };
+    this.broadcasterId = queryString.parse(window.location.search).b;
   }
-
+  
   componentDidMount() {
     this.listen();
   }
 
-  listen() {
-    window.Echo.channel('redemptions.548965051').listen('RedemptionReceived', (e) => {
+  listen(broadcasterId) {
+    window.Echo.channel('redemptions.'+ this.broadcasterId).listen('RedemptionReceived', (e) => {
       const title = e.redemption.reward.title;
       const selected = redemptions.find(e => e.title === title);
   
@@ -38,7 +41,7 @@ class App extends React.Component {
       }
     });
     
-    window.Echo.private('redemptions.548965051').listenForWhisper('removed', (e) => {
+    window.Echo.private('redemptions.'+ this.broadcasterId).listenForWhisper('removed', (e) => {
       this.handleRemoveRedemption(e.event_id);
     });
   }
@@ -77,7 +80,7 @@ class App extends React.Component {
   }
   
   componentWillUnmount() {
-    window.Echo.leaveChannel('redemptions.548965051');
+    window.Echo.leaveChannel('redemptions.'+ this.broadcasterId);
   }
 
   render() {
