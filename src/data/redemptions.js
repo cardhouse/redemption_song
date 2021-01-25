@@ -18,9 +18,5 @@ export const redemptions = [
     {
         "title": "Sideways",
         "timer": 5
-    },
-    {
-        "title": "Hydrate",
-        "timer": 1
     }
 ];
