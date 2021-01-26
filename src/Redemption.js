@@ -19,10 +19,12 @@ export default class Redemption extends React.Component {
 	}
 
 	addTimer(minutes) {
-		this.setState({
-			timeRemaining: minutes * 60,
-			timerRunning: false
-		});
+		if (!process.env.REACT_APP_DISABLE_TIMERS) {
+			this.setState({
+				timeRemaining: minutes * 60,
+				timerRunning: false
+			});
+		}
 	}
 
 	handleClick() {
