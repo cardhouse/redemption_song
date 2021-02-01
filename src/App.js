@@ -29,7 +29,7 @@ class App extends React.Component {
     this.listen();
   }
 
-  listen(broadcasterId) {
+  listen() {
     window.Echo.channel('redemptions.'+ this.broadcasterId).listen('RedemptionReceived', (e) => {
       const title = e.redemption.reward.title;
       const selected = redemptions.find(e => e.title === title);
@@ -47,21 +47,15 @@ class App extends React.Component {
   }
 
   handleRemoveRedemption(eventId) {
-    var redemptions = this.state.redemptions;
-    const id = this.findIndex(redemptions, 'id', eventId);
-    redemptions.splice(id, 1);
-    this.setState({
-      redemptions: redemptions
-    });
-  }
-
-  findIndex(array, key, value) {
-    for (let index = 0; index < array.length; index++) {
-      if (array[index][key] === value) {
-        return index;
+    let redemptions = this.state.redemptions;
+    redemptions = redemptions.map((val, i) => {
+      if(val.id === eventId) {
+        val.visible = false;
       }
-    }
-    return -1;
+      return val;
+    });
+
+    this.setState({ redemptions: redemptions});
   }
 
   handleAddRedemption(event, timer) {
@@ -74,7 +68,8 @@ class App extends React.Component {
         cost: event.redemption.reward.cost,
         timer: (timer === "") ? 0 : timer,
         message: event.user_input,
-        image: event.redemption.image
+        image: event.redemption.image,
+        visible: true
       }]),
     });
   }

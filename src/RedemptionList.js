@@ -14,6 +14,7 @@ export default class RedemptionList extends React.Component {
 				timer={redemption.timer}
 				message={redemption.message}
 				image={redemption.image}
+				visible={redemption.visible}
 			/>
 		)
 	}

@@ -100,7 +100,7 @@ export default class Redemption extends React.Component {
 
 	render() {
 		return (
-			<div className={"card cursor-pointer " + this.state.alerting + ' ' + this.state.redeemed} onClick={() => this.handleClick()}>
+			<div className={"card cursor-pointer " + this.state.alerting + ' ' + (this.props.visible ? '' : 'redeemed')} onClick={() => this.handleClick()}>
 				<div className="card-icon">
 					<img className="w-12 h-12" src={this.props.image} alt="" />
 				</div>

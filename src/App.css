@@ -40,7 +40,7 @@ ul, li {
 }
 
 .redeemed {
-  background-color: crimson;
+  display: none;
 }
 
 .card-icon {
