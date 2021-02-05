@@ -19,7 +19,7 @@ export default class Counter extends React.Component {
     }
 
     async init() {
-        fetch(`http://cardhouse.online/api/start/${this.broadcasterId}/counter?reward_id=${this.state.redemption}`)
+        fetch(`https://cardhouse.online/api/start/${this.broadcasterId}/counter?reward_id=${this.state.redemption}`)
         .then(response => response.json())
         .then(data => {
             this.setState({
