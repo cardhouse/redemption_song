@@ -8,6 +8,7 @@ export default class Counter extends React.Component {
         this.state = {
             redemption: queryString.parse(window.location.search).r,
             name: '',
+            image: '',
             count: 0
         };
         this.broadcasterId = queryString.parse(window.location.search).b;
@@ -24,6 +25,7 @@ export default class Counter extends React.Component {
         .then(data => {
             this.setState({
                 name: data.name,
+                image: data.image,
                 count: data.count
             })
         })
@@ -48,10 +50,18 @@ export default class Counter extends React.Component {
     render() {
         return (
             <div className="card">
-                <ul>
-                    <li>{ this.state.name}</li>
-                    <li>{this.state.count}</li>
-                </ul>
+                <div className="card-icon">
+					<img className="w-12 h-12" src={this.state.image} alt="" />
+				</div>
+                <div className="card-info">
+                    <span className="username">
+                        Current stream count
+                    </span>
+                    <h2>{ this.state.name}</h2>
+                </div>
+                <div className="card-time">
+                    <p>{this.state.count}</p>
+                </div>
             </div>
         )
     }
