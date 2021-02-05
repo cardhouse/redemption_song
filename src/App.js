@@ -2,19 +2,7 @@ import './App.css';
 import React from 'react';
 import RedemptionList from './RedemptionList'
 import { redemptions } from './data/redemptions';
-import Echo from 'laravel-echo';
 import queryString from 'query-string'
-
-window.Pusher = require('pusher-js');
-
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '4ccf3005de75c66366d9',
-    authEndpoint: process.env.REACT_APP_NGROK_DOMAIN + '/api/broadcasting',
-    cluster: 'us2',
-    forceTLS: true
-});
-
 
 class App extends React.Component {
   constructor(props) {
