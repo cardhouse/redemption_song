@@ -52,7 +52,7 @@ export default class Counter extends React.Component {
     render() {
         return (
             <div className="flex h-screen items-center justify-around py-3 px-5 rounded-full shadow-md" style={{ backgroundColor: this.state.color }}>
-                <img className="max-w-12 mr-3" src={this.state.image} alt="" />
+                <img className="max-w-12 mr-3 sm:mr-0" src={this.state.image} alt="" />
                 <div className={'sm:flex flex-col hidden text-center'}>
                     <span className="text-sm">How many</span>
                     <span className="text-xl font-bold">{ this.state.name}</span>
